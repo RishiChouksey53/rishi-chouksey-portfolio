@@ -29,22 +29,50 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex justify-between items-center">
-          <a href="#" className="font-heading text-2xl font-bold">
+          <a href="#" className="font-heading text-2xl font-bold text-primary">
             Portfolio
           </a>
           
           <div className={`fixed md:relative top-0 left-0 right-0 bg-white/95 md:bg-transparent backdrop-blur-lg md:backdrop-blur-none transition-all duration-300 ${
             isMenuOpen ? "translate-y-[4rem]" : "-translate-y-full md:translate-y-0"
           }`}>
-            <ul className="flex flex-col md:flex-row items-center gap-6 md:gap-8 py-8 md:py-0">
-              <li><a href="#projects" className="text-lg md:text-base font-medium hover:text-primary transition-colors">Projects</a></li>
-              <li><a href="#skills" className="text-lg md:text-base font-medium hover:text-primary transition-colors">Skills</a></li>
-              <li><a href="#contact" className="text-lg md:text-base font-medium hover:text-primary transition-colors">Contact</a></li>
-            </ul>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:px-0">
+              <ul className="flex flex-col md:flex-row justify-center items-center gap-8 py-8 md:py-0">
+                <li>
+                  <a 
+                    href="#projects" 
+                    className="text-base font-medium text-gray-600 hover:text-primary transition-colors"
+                  >
+                    Projects
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#skills" 
+                    className="text-base font-medium text-gray-600 hover:text-primary transition-colors"
+                  >
+                    Skills
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#contact" 
+                    className="text-base font-medium text-gray-600 hover:text-primary transition-colors"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           
           <div className="flex items-center gap-4">
-            <Button asChild className="hidden md:flex">
+            <Button 
+              variant="default"
+              size="sm"
+              className="hidden md:flex"
+              asChild
+            >
               <a href="#contact">Get In Touch</a>
             </Button>
             
@@ -54,7 +82,7 @@ const Header = () => {
               className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="h-5 w-5" />
             </Button>
           </div>
         </nav>
