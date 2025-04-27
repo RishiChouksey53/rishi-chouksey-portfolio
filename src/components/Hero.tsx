@@ -1,0 +1,58 @@
+
+import { Button } from "@/components/ui/button";
+import { ArrowDownIcon } from "lucide-react";
+
+const Hero = () => {
+  return (
+    <section className="min-h-screen flex items-center pt-16">
+      <div className="section-container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6 animate-fade-in">
+            <p className="text-primary font-medium">Hello, I'm</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              John Doe
+            </h1>
+            <h2 className="text-2xl md:text-3xl text-muted-foreground">
+              Full Stack Developer
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-xl">
+              I build accessible, user-friendly web applications that solve real-world problems.
+              Passionate about clean code and modern technologies.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button asChild size="lg">
+                <a href="#projects">View Projects</a>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <a href="#contact">Contact Me</a>
+              </Button>
+            </div>
+          </div>
+          
+          <div className="hidden lg:flex justify-end">
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-full blur-md opacity-75"></div>
+              <div className="relative bg-white rounded-full p-1">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" 
+                  alt="Developer Profile" 
+                  className="w-72 h-72 rounded-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="absolute bottom-10 left-0 right-0 hidden md:flex justify-center">
+          <Button variant="ghost" size="icon" asChild>
+            <a href="#projects">
+              <ArrowDownIcon className="h-6 w-6 animate-bounce" />
+            </a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
