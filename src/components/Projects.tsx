@@ -1,157 +1,106 @@
 
-import { useEffect, useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-interface GithubRepo {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  homepage: string;
-  topics: string[];
-  language: string;
-}
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  imageSrc: string;
-  demoUrl: string;
-  githubUrl: string;
-  technologies: string[];
-  category: string;
-}
-
 const Projects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("https://api.github.com/users/RishiChouksey53/repos");
-        if (!response.ok) {
-          throw new Error("Failed to fetch repositories");
-        }
-        
-        const repos = await response.json();
-        
-        // Map GitHub repos to our project format
-        const mappedProjects = repos.map((repo: GithubRepo) => {
-          // Determine category based on language or topics
-          let category = "frontend";
-          if (repo.topics && repo.topics.includes("backend")) {
-            category = "backend";
-          } else if (
-            repo.language === "JavaScript" || 
-            repo.language === "TypeScript" || 
-            repo.language === "HTML" || 
-            repo.language === "CSS"
-          ) {
-            category = "frontend";
-          } else if (
-            repo.topics && 
-            (repo.topics.includes("fullstack") || 
-             repo.topics.includes("full-stack"))
-          ) {
-            category = "fullstack";
-          } else if (
-            repo.language === "Python" || 
-            repo.language === "Java" || 
-            repo.language === "C#" || 
-            repo.language === "PHP" || 
-            repo.language === "Ruby"
-          ) {
-            category = "backend";
-          }
-
-          // Generate a placeholder image based on the repo id
-          const imageIndex = repo.id % 6;
-          const placeholderImages = [
-            "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-            "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-            "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-            "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-            "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-            "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-          ];
-          
-          // Get technologies from topics or language
-          const technologies = repo.topics && repo.topics.length > 0 
-            ? repo.topics.map(topic => topic.charAt(0).toUpperCase() + topic.slice(1)) 
-            : repo.language 
-              ? [repo.language] 
-              : ["JavaScript"];
-
-          return {
-            id: repo.id,
-            title: repo.name.replace(/-/g, " ").replace(/_/g, " "),
-            description: repo.description || `A ${category} project built with ${technologies.join(", ")}`,
-            imageSrc: placeholderImages[imageIndex],
-            demoUrl: repo.homepage || repo.html_url,
-            githubUrl: repo.html_url,
-            technologies,
-            category,
-          };
-        });
-
-        setProjects(mappedProjects);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-        // Fallback to existing projects in case of error
-        setProjects([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
+  const projects = [
+    {
+      id: 1,
+      title: "E-commerce Platform",
+      description: "A full-featured online store with product management, cart, and checkout functionality.",
+      imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "#",
+      githubUrl: "#",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      category: "fullstack"
+    },
+    {
+      id: 2,
+      title: "Task Management App",
+      description: "A productivity tool for organizing tasks with drag-and-drop functionality.",
+      imageSrc: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "#",
+      githubUrl: "#",
+      technologies: ["React", "TypeScript", "Firebase"],
+      category: "frontend"
+    },
+    {
+      id: 3,
+      title: "Weather Dashboard",
+      description: "Real-time weather data visualization with interactive maps and forecasts.",
+      imageSrc: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "#",
+      githubUrl: "#",
+      technologies: ["JavaScript", "APIs", "Chart.js"],
+      category: "frontend"
+    },
+    {
+      id: 4,
+      title: "Fitness Tracker API",
+      description: "RESTful API for tracking workouts, nutrition, and fitness progress.",
+      imageSrc: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "#",
+      githubUrl: "#",
+      technologies: ["Node.js", "Express", "PostgreSQL", "JWT"],
+      category: "backend"
+    },
+    {
+      id: 5,
+      title: "Real Estate Listings",
+      description: "Property search platform with filtering options and interactive maps.",
+      imageSrc: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "#",
+      githubUrl: "#",
+      technologies: ["React", "Redux", "Leaflet", "Firebase"],
+      category: "fullstack"
+    },
+    {
+      id: 6,
+      title: "Social Media Dashboard",
+      description: "Analytics dashboard for monitoring social media engagement metrics.",
+      imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "#",
+      githubUrl: "#",
+      technologies: ["Vue.js", "D3.js", "Node.js"],
+      category: "frontend"
+    }
+  ];
 
   return (
     <section id="projects" className="bg-secondary/50">
       <div className="section-container">
         <h2 className="section-title">Featured <span className="highlight">Projects</span></h2>
         
-        {isLoading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <Tabs defaultValue="all" className="w-full">
+          <div className="flex justify-center mb-8">
+            <TabsList>
+              <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="frontend">Frontend</TabsTrigger>
+              <TabsTrigger value="backend">Backend</TabsTrigger>
+              <TabsTrigger value="fullstack">Full Stack</TabsTrigger>
+            </TabsList>
           </div>
-        ) : (
-          <Tabs defaultValue="all" className="w-full">
-            <div className="flex justify-center mb-8">
-              <TabsList>
-                <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="frontend">Frontend</TabsTrigger>
-                <TabsTrigger value="backend">Backend</TabsTrigger>
-                <TabsTrigger value="fullstack">Full Stack</TabsTrigger>
-              </TabsList>
+          
+          <TabsContent value="all" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map(project => (
+                <ProjectCard key={project.id} {...project} />
+              ))}
             </div>
-            
-            <TabsContent value="all" className="mt-0">
+          </TabsContent>
+          
+          {["frontend", "backend", "fullstack"].map(category => (
+            <TabsContent key={category} value={category} className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects.map(project => (
-                  <ProjectCard key={project.id} {...project} />
-                ))}
+                {projects
+                  .filter(project => project.category === category)
+                  .map(project => (
+                    <ProjectCard key={project.id} {...project} />
+                  ))}
               </div>
             </TabsContent>
-            
-            {["frontend", "backend", "fullstack"].map(category => (
-              <TabsContent key={category} value={category} className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {projects
-                    .filter(project => project.category === category)
-                    .map(project => (
-                      <ProjectCard key={project.id} {...project} />
-                    ))}
-                </div>
-              </TabsContent>
-            ))}
-          </Tabs>
-        )}
+          ))}
+        </Tabs>
       </div>
     </section>
   );

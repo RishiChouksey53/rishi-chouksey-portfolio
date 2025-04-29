@@ -37,13 +37,13 @@ const ProjectCard = ({ title, description, imageSrc, demoUrl, githubUrl, technol
         </div>
       </CardContent>
       <CardFooter className="flex justify-center gap-4 pt-4 border-t">
-        <Button className="w-[45%]" asChild>
+        <Button className="w-1/2" asChild>
           <a href={demoUrl} target="_blank" rel="noopener noreferrer">
             <ExternalLink className="h-4 w-4 mr-2" />
             View Demo
           </a>
         </Button>
-        <Button variant="outline" className="w-[45%]" asChild>
+        <Button variant="outline" className="w-1/2" asChild>
           <a href={githubUrl} target="_blank" rel="noopener noreferrer">
             <Github className="h-4 w-4 mr-2" />
             View Code
