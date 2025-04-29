@@ -1,106 +1,157 @@
 
+import { useEffect, useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+interface GithubRepo {
+  id: number;
+  name: string;
+  description: string;
+  html_url: string;
+  homepage: string;
+  topics: string[];
+  language: string;
+}
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  imageSrc: string;
+  demoUrl: string;
+  githubUrl: string;
+  technologies: string[];
+  category: string;
+}
+
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "YourBar",
-      description: "YourBar is a web application that allows users to organize and keep track of their bar inventory.",
-      imageSrc: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "https://github.com/RishiChouksey053/YourBar",
-      githubUrl: "https://github.com/RishiChouksey053/YourBar",
-      technologies: ["Node.js", "Express", "MongoDB", "Handlebars"],
-      category: "fullstack"
-    },
-    {
-      id: 2,
-      title: "Travel Agency",
-      description: "A travel agency website with a sleek design and user-friendly interface for booking travels and vacation packages.",
-      imageSrc: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "https://github.com/RishiChouksey053/travel-agency",
-      githubUrl: "https://github.com/RishiChouksey053/travel-agency",
-      technologies: ["HTML", "CSS", "JavaScript"],
-      category: "frontend"
-    },
-    {
-      id: 3,
-      title: "Fitness App",
-      description: "A fitness application designed to help users track their workout routines, nutrition, and overall fitness progress.",
-      imageSrc: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "https://github.com/RishiChouksey053/Fitness-App",
-      githubUrl: "https://github.com/RishiChouksey053/Fitness-App",
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
-      category: "fullstack"
-    },
-    {
-      id: 4,
-      title: "Pizza Order Website",
-      description: "A comprehensive pizza ordering website with menu display, cart functionality, and order processing.",
-      imageSrc: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "https://github.com/RishiChouksey053/Pizza-Order-Website",
-      githubUrl: "https://github.com/RishiChouksey053/Pizza-Order-Website",
-      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-      category: "fullstack"
-    },
-    {
-      id: 5,
-      title: "Grocery Store",
-      description: "An online grocery store platform with product catalog, shopping cart, and checkout functionality.",
-      imageSrc: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "https://github.com/RishiChouksey053/Grocery-Store",
-      githubUrl: "https://github.com/RishiChouksey053/Grocery-Store",
-      technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-      category: "frontend"
-    },
-    {
-      id: 6,
-      title: "LinkedIn-Clone",
-      description: "A LinkedIn clone project with user profiles, networking features, and post capabilities.",
-      imageSrc: "https://images.unsplash.com/photo-1607969891751-mfa9b9e9cb7d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "https://github.com/RishiChouksey053/LinkedIn-Clone",
-      githubUrl: "https://github.com/RishiChouksey053/LinkedIn-Clone",
-      technologies: ["React", "Firebase"],
-      category: "frontend"
-    }
-  ];
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://api.github.com/users/RishiChouksey53/repos");
+        if (!response.ok) {
+          throw new Error("Failed to fetch repositories");
+        }
+        
+        const repos = await response.json();
+        
+        // Map GitHub repos to our project format
+        const mappedProjects = repos.map((repo: GithubRepo) => {
+          // Determine category based on language or topics
+          let category = "frontend";
+          if (repo.topics && repo.topics.includes("backend")) {
+            category = "backend";
+          } else if (
+            repo.language === "JavaScript" || 
+            repo.language === "TypeScript" || 
+            repo.language === "HTML" || 
+            repo.language === "CSS"
+          ) {
+            category = "frontend";
+          } else if (
+            repo.topics && 
+            (repo.topics.includes("fullstack") || 
+             repo.topics.includes("full-stack"))
+          ) {
+            category = "fullstack";
+          } else if (
+            repo.language === "Python" || 
+            repo.language === "Java" || 
+            repo.language === "C#" || 
+            repo.language === "PHP" || 
+            repo.language === "Ruby"
+          ) {
+            category = "backend";
+          }
+
+          // Generate a placeholder image based on the repo id
+          const imageIndex = repo.id % 6;
+          const placeholderImages = [
+            "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+            "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+            "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+            "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+            "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+            "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+          ];
+          
+          // Get technologies from topics or language
+          const technologies = repo.topics && repo.topics.length > 0 
+            ? repo.topics.map(topic => topic.charAt(0).toUpperCase() + topic.slice(1)) 
+            : repo.language 
+              ? [repo.language] 
+              : ["JavaScript"];
+
+          return {
+            id: repo.id,
+            title: repo.name.replace(/-/g, " ").replace(/_/g, " "),
+            description: repo.description || `A ${category} project built with ${technologies.join(", ")}`,
+            imageSrc: placeholderImages[imageIndex],
+            demoUrl: repo.homepage || repo.html_url,
+            githubUrl: repo.html_url,
+            technologies,
+            category,
+          };
+        });
+
+        setProjects(mappedProjects);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+        // Fallback to existing projects in case of error
+        setProjects([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   return (
     <section id="projects" className="bg-secondary/50">
       <div className="section-container">
         <h2 className="section-title">Featured <span className="highlight">Projects</span></h2>
         
-        <Tabs defaultValue="all" className="w-full">
-          <div className="flex justify-center mb-8">
-            <TabsList>
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="frontend">Frontend</TabsTrigger>
-              <TabsTrigger value="backend">Backend</TabsTrigger>
-              <TabsTrigger value="fullstack">Full Stack</TabsTrigger>
-            </TabsList>
+        {isLoading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
-          
-          <TabsContent value="all" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.map(project => (
-                <ProjectCard key={project.id} {...project} />
-              ))}
+        ) : (
+          <Tabs defaultValue="all" className="w-full">
+            <div className="flex justify-center mb-8">
+              <TabsList>
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="frontend">Frontend</TabsTrigger>
+                <TabsTrigger value="backend">Backend</TabsTrigger>
+                <TabsTrigger value="fullstack">Full Stack</TabsTrigger>
+              </TabsList>
             </div>
-          </TabsContent>
-          
-          {["frontend", "backend", "fullstack"].map(category => (
-            <TabsContent key={category} value={category} className="mt-0">
+            
+            <TabsContent value="all" className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects
-                  .filter(project => project.category === category)
-                  .map(project => (
-                    <ProjectCard key={project.id} {...project} />
-                  ))}
+                {projects.map(project => (
+                  <ProjectCard key={project.id} {...project} />
+                ))}
               </div>
             </TabsContent>
-          ))}
-        </Tabs>
+            
+            {["frontend", "backend", "fullstack"].map(category => (
+              <TabsContent key={category} value={category} className="mt-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {projects
+                    .filter(project => project.category === category)
+                    .map(project => (
+                      <ProjectCard key={project.id} {...project} />
+                    ))}
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        )}
       </div>
     </section>
   );
