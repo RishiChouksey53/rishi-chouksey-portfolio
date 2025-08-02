@@ -6,63 +6,43 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-commerce Platform",
-      description: "A full-featured online store with product management, cart, and checkout functionality.",
-      imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "#",
-      githubUrl: "#",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      title: "Pro Connect",
+      description: "A fully functional LinkedIn-inspired web application that supports user authentication, post creation, comment threads, and professional networking features. Developed with a modular architecture and responsive UI.",
+      imageSrc: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "https://github.com/RishiChouksey53/ProConnect-Frontend",
+      githubUrl: "https://github.com/RishiChouksey53/ProConnect-Backend",
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
       category: "fullstack"
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "A productivity tool for organizing tasks with drag-and-drop functionality.",
-      imageSrc: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "#",
-      githubUrl: "#",
-      technologies: ["React", "TypeScript", "Firebase"],
-      category: "frontend"
-    },
-    {
-      id: 3,
-      title: "Weather Dashboard",
-      description: "Real-time weather data visualization with interactive maps and forecasts.",
-      imageSrc: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "#",
-      githubUrl: "#",
-      technologies: ["JavaScript", "APIs", "Chart.js"],
-      category: "frontend"
-    },
-    {
-      id: 4,
-      title: "Fitness Tracker API",
-      description: "RESTful API for tracking workouts, nutrition, and fitness progress.",
-      imageSrc: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "#",
-      githubUrl: "#",
-      technologies: ["Node.js", "Express", "PostgreSQL", "JWT"],
-      category: "backend"
-    },
-    {
-      id: 5,
-      title: "Real Estate Listings",
-      description: "Property search platform with filtering options and interactive maps.",
-      imageSrc: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "#",
-      githubUrl: "#",
-      technologies: ["React", "Redux", "Leaflet", "Firebase"],
+      title: "PromptGPT",
+      description: "A full-stack AI chat assistant powered by OpenAI's API, allowing users to create, manage, and continue chat threads with smart prompts. Integrated authentication, chat history, and real-time updates.",
+      imageSrc: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "https://github.com/RishiChouksey53/PromptGPT-Frontend",
+      githubUrl: "https://github.com/RishiChouksey53/PromptGPT-Backend",
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "OpenAI API"],
       category: "fullstack"
     },
     {
-      id: 6,
-      title: "Social Media Dashboard",
-      description: "Analytics dashboard for monitoring social media engagement metrics.",
-      imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      demoUrl: "#",
-      githubUrl: "#",
-      technologies: ["Vue.js", "D3.js", "Node.js"],
-      category: "frontend"
+      id: 3,
+      title: "Airbnb Clone",
+      description: "A full-stack booking platform where users can browse, list, and book accommodations. Implements user authentication, listing filters, and responsive UI design.",
+      imageSrc: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "https://github.com/RishiChouksey53/Airbnb-Clone",
+      githubUrl: "https://github.com/RishiChouksey53/Airbnb-Clone",
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
+      category: "fullstack"
+    },
+    {
+      id: 4,
+      title: "Zerodha Clone",
+      description: "Stock trading platform simulation with login, dashboard UI, and portfolio tracking. A comprehensive trading interface mimicking real-world stock trading platforms.",
+      imageSrc: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      demoUrl: "https://github.com/RishiChouksey53/Zerodha-Frontend",
+      githubUrl: "https://github.com/RishiChouksey53/Zerodha-Backend",
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
+      category: "fullstack"
     }
   ];
 

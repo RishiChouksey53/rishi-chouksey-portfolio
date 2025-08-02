@@ -9,11 +9,10 @@ const Hero = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">Rishi Chouksey
           </h1>
             <h2 className="text-2xl md:text-3xl text-muted-foreground">
-              Full Stack Developer
+              Aspiring Software Engineer
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl">
-              I build accessible, user-friendly web applications that solve real-world problems.
-              Passionate about clean code and modern technologies.
+              Strong foundation in Data Structures and Algorithms using Java, with hands-on experience in full-stack web development using the MERN stack. Solved 100+ LeetCode problems.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild size="lg">

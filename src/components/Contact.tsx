@@ -56,7 +56,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <p className="text-muted-foreground">john.doe@example.com</p>
+                  <p className="text-muted-foreground">choukseyrishi89@gmail.com</p>
                 </div>
               </div>
               
@@ -67,9 +67,9 @@ const Contact = () => {
                 <div>
                   <h4 className="font-medium">Social Media</h4>
                   <div className="flex gap-3 mt-1">
-                    <a href="#" className="text-muted-foreground hover:text-primary">LinkedIn</a>
-                    <a href="#" className="text-muted-foreground hover:text-primary">Twitter</a>
-                    <a href="#" className="text-muted-foreground hover:text-primary">GitHub</a>
+                    <a href="https://linkedin.com/in/rishichouksey53" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">LinkedIn</a>
+                    <a href="https://leetcode.com/u/RishiChouksey" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">LeetCode</a>
+                    <a href="https://github.com/RishiChouksey53" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">GitHub</a>
                   </div>
                 </div>
               </div>

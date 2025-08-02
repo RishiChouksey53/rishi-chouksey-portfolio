@@ -5,51 +5,45 @@ import { Code, Database, Layout, Server, Settings, Smartphone } from "lucide-rea
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Frontend Development",
-      icon: <Layout className="h-8 w-8 text-primary mb-4" />,
+      title: "Programming Languages",
+      icon: <Code className="h-8 w-8 text-primary mb-4" />,
       skills: [
-        "React.js", "Next.js", "TypeScript", 
-        "HTML5 & CSS3", "Tailwind CSS", "Redux"
+        "Java", "JavaScript"
       ]
     },
     {
-      title: "Backend Development",
+      title: "Full-Stack Development",
       icon: <Server className="h-8 w-8 text-primary mb-4" />,
       skills: [
-        "Node.js", "Express.js", "Python", 
-        "Django", "RESTful APIs", "GraphQL"
+        "React.js", "Node.js", "Express.js", "MongoDB"
+      ]
+    },
+    {
+      title: "Frontend Styling",
+      icon: <Layout className="h-8 w-8 text-primary mb-4" />,
+      skills: [
+        "Tailwind CSS", "HTML", "CSS"
       ]
     },
     {
       title: "Database",
       icon: <Database className="h-8 w-8 text-primary mb-4" />,
       skills: [
-        "MongoDB", "PostgreSQL", "MySQL", 
-        "Firebase", "Redis", "Prisma ORM"
+        "MySQL", "MongoDB"
       ]
     },
     {
-      title: "DevOps & Tools",
+      title: "Version Control",
       icon: <Settings className="h-8 w-8 text-primary mb-4" />,
       skills: [
-        "Git & GitHub", "Docker", "AWS", 
-        "CI/CD", "Jest", "Cypress"
+        "Git", "GitHub"
       ]
     },
     {
-      title: "Mobile Development",
+      title: "Problem Solving",
       icon: <Smartphone className="h-8 w-8 text-primary mb-4" />,
       skills: [
-        "React Native", "Flutter", "iOS", 
-        "Android", "Expo", "Mobile UI/UX"
-      ]
-    },
-    {
-      title: "Programming Languages",
-      icon: <Code className="h-8 w-8 text-primary mb-4" />,
-      skills: [
-        "JavaScript", "TypeScript", "Python", 
-        "Java", "C#", "Go"
+        "Data Structures", "Algorithms", "100+ LeetCode", "Java DSA"
       ]
     }
   ];
