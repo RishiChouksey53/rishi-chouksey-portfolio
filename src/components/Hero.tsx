@@ -28,7 +28,7 @@ const Hero = () => {
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-full blur-md opacity-75"></div>
               <div className="relative bg-white rounded-full p-1">
-                <img src="/lovable-uploads/6b1a5228-6f40-4c8d-82ec-13a28595e793.png" alt="Rishi Chouksey Profile" className="w-72 h-72 rounded-full object-cover" />
+                <img src="/uploads/6b1a5228-6f40-4c8d-82ec-13a28595e793.png" alt="Rishi Chouksey Profile" className="w-72 h-72 rounded-full object-cover" />
               </div>
             </div>
           </div>
